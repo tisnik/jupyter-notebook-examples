@@ -29,7 +29,7 @@ def init():
 def animate(i):
     # hodnoty na x-ové ose
     x = np.linspace(0, 2*np.pi, 100)
-    
+
     # hodnoty na y-ové ose: první funkce
     y1 = np.sin(x + np.pi*i/50)
 
