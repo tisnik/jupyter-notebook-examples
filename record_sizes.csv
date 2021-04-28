@@ -1,0 +1,20 @@
+Filename,Original,Cleaned up,Minified,Shrinked (%)
+big_results.json,11072,5448,2882,26
+big_results_tutorial.json,11505,5792,3067,26
+result04.json,7064,679,421,5
+no_hits.json,4407,197,151,3
+big_results_no_skips.json,7040,5448,2882,40
+no_hits_no_skips.json,375,197,151,40
+big_results_org_1.json,11065,5441,2875,25
+result01.json,7128,725,467,6
+result05.json,7078,693,435,6
+tutorial_only.json,2261,543,329,14
+15_rules_hits.json,11695,8725,4569,39
+15_rules_hits_org_1.json,11688,8718,4562,39
+05_rules_hits.json,11072,5448,2882,26
+05_rules_hits_org_1.json,11065,5441,2875,25
+10_rules_hits_org_1.json,11663,7037,3676,31
+big_results_no_skips_tutorial.json,7473,5792,3067,41
+result03.json,7067,679,421,5
+result02.json,7067,679,421,5
+10_rules_hits.json,11670,7044,3683,31
