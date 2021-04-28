@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>minify.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>minify.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span><span class="p">,</span> <span class="n">stat</span><span class="p">,</span> <span class="n">walk</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">join</span>
+
+<span class="n">input_directory</span> <span class="o">=</span> <span class="s2">&quot;input&quot;</span>
+<span class="n">pretty_printed_directory</span> <span class="o">=</span> <span class="s2">&quot;prettyprinted&quot;</span>
+<span class="n">minified_directory</span> <span class="o">=</span> <span class="s2">&quot;minified&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Retrieve list of files in current directory.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">input_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">input_directory</span><span class="p">)</span>
+               <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">input_directory</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Iterate over all input files found in current directory.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">input_files</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Processing input file&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Just proper JSON files needs to be processed.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Try to open the given file, read its content, parse it as JSON and
+use the processed payload later</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">input_directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Delete unused data</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="k">if</span> <span class="s2">&quot;Report&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">][</span><span class="s2">&quot;system&quot;</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">][</span><span class="s2">&quot;fingerprints&quot;</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">][</span><span class="s2">&quot;skips&quot;</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">][</span><span class="s2">&quot;info&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="s2">&quot;pass&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">]:</span>
+                    <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">][</span><span class="s2">&quot;pass&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">report</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Report&quot;</span><span class="p">][</span><span class="s2">&quot;reports&quot;</span><span class="p">]:</span>
+                    <span class="k">del</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+                    <span class="k">del</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">]</span>
+                    <span class="k">del</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;links&quot;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>Export the updated report in pretty printed format</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">outfilename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">pretty_printed_directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fout</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>Export the updated report in minified format</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>            <span class="n">outfilename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">minified_directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fout</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fout</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>Statistic</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">file_size</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">stat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">info</span><span class="o">.</span><span class="n">st_size</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;record_sizes.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">&quot;Filename&quot;</span><span class="p">,</span> <span class="s2">&quot;Original&quot;</span><span class="p">,</span> <span class="s2">&quot;Cleaned up&quot;</span><span class="p">,</span> <span class="s2">&quot;Minified&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;Shrinked (%)&quot;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">input_files</span><span class="p">:</span>
+        <span class="n">s1</span> <span class="o">=</span> <span class="n">file_size</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">input_directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">file_size</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">pretty_printed_directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+        <span class="n">s3</span> <span class="o">=</span> <span class="n">file_size</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">minified_directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">filename</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span><span class="o">*</span><span class="n">s3</span><span class="o">/</span><span class="n">s1</span><span class="p">)])</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
