@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<mxGraphModel dx="634" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="&lt;div&gt;View&lt;br&gt;&lt;/div&gt;&lt;div&gt;Ovl&#xE1;dac&#xED; prvek&lt;/div&gt;&lt;div&gt;na plo&#x161;e&lt;/div&gt;&lt;div&gt;Jupyter Notebooku&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;" vertex="1" parent="1">
+      <mxGeometry x="30" y="70" width="120" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="3" value="&lt;div&gt;Model&lt;/div&gt;&lt;div&gt;(&#x10D;&#xE1;st v JavaScriptu&lt;br&gt;a HTML)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;" vertex="1" parent="1">
+      <mxGeometry x="110" y="170" width="120" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="4" value="&lt;div&gt;Stav a logika&lt;/div&gt;&lt;div&gt;(b&#x11B;&#x17E;&#xED; v kernelu&lt;/div&gt;&lt;div&gt;Pythonu)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
+      <mxGeometry x="110" y="270" width="120" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="5" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;exitX=0.25;exitY=0;" edge="1" parent="1" source="3" target="2">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="110" y="390" as="sourcePoint"/>
+        <mxPoint x="160" y="340" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="6" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;exitX=0.5;exitY=0;" edge="1" parent="1" source="4" target="3">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="110" y="390" as="sourcePoint"/>
+        <mxPoint x="160" y="340" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="7" value="&lt;div&gt;View&lt;br&gt;&lt;/div&gt;&lt;div&gt;Ovl&#xE1;dac&#xED; prvek&lt;/div&gt;&lt;div&gt;na plo&#x161;e&lt;/div&gt;&lt;div&gt;Jupyter Notebooku&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;" vertex="1" parent="1">
+      <mxGeometry x="190" y="70" width="120" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="8" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;exitX=0.704;exitY=0.033;exitPerimeter=0;" edge="1" parent="1" source="3" target="7">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="30" y="400" as="sourcePoint"/>
+        <mxPoint x="80" y="350" as="targetPoint"/>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>
